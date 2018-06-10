@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- provider's application name, used for tracing dependency relationship -->
+    <!--提供方应用名称，用于计算依赖关系-->
+    <dubbo:application name="provider-server"/>
+
+    <!-- use multicast registry center to export service -->
+    <!--使用zookeeper注册中心暴露服务地址-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!-- use dubbo protocol to export service on port 20880 -->
+    <!--使用Dubbo协议，在20880端口暴露服务-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!-- service implementation, as same as regular local bean -->
+    <!--service实体类作为本地的一个bean-->
+    <bean id="userService" class="com.dubbo.provider.providerserver.service.user.impl.UserServiceImpl"/>
+
+    <!-- declare the service interface to be exported -->
+    <!--声明需要暴露的接口-->
+    <dubbo:service interface="com.dubbo.api.service.user.UserService" ref="userService"/>
+
+    <bean id="emailService" class="com.dubbo.provider.providerserver.service.email.impl.EmailServiceImpl"/>
+
+    <dubbo:service interface="com.dubbo.api.service.email.EmailService" ref="emailService"/>
+
+</beans>
