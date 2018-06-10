@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
+
 /**
  * @author sam199510 273045049@qq.com
  * @version Created Time:2018/3/30 20:26:15
@@ -15,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConsumerController {
 
-    @Autowired
+    @Resource
     private UserService userService;
 
-    @Autowired
+    @Resource
     private EmailService emailService;
 
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
