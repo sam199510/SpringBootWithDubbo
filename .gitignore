@@ -4,3 +4,4 @@ consumer-server/consumer-server.iml
 parent-server/parent-server.iml
 provider-server/provider-server.iml
 api-server/api-server.iml
+consumer-server/consumer-server.iml
